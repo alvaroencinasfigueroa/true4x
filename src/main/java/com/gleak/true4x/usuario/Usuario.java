@@ -33,4 +33,9 @@ public class Usuario {
 
     @Column(nullable = false)
     private LocalDateTime fechaRegistro = LocalDateTime.now();
+
+    // Datos del perfil
+    private String nombreUsuario;
+    private String celular;
+    private String fotoPerfil;
 }
