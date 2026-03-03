@@ -3,6 +3,9 @@ package com.gleak.true4x.usuario;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/perfil")
@@ -27,5 +30,13 @@ public class PerfilController {
             @RequestBody EditarPerfilRequest request) {
         String email = authentication.getName();
         return ResponseEntity.ok(perfilService.editarPerfil(email, request));
+    }
+
+    @PatchMapping("/foto")
+    public ResponseEntity<PerfilResponse> subirFotoPerfil(
+            Authentication authentication,
+            @RequestParam("archivo") MultipartFile archivo) throws IOException {
+        String email = authentication.getName();
+        return ResponseEntity.ok(perfilService.subirFotoPerfil(email, archivo));
     }
 }
